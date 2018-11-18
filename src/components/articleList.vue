@@ -83,11 +83,12 @@
     methods: {
       requestData(currentPage) {
         // 在这里使用ajax或者fetch将对应页传过去获取数据即可
-        let url = 'https://api.github.com/repos/LeachZhou/blog/issues';
+        let url = 'https://api.github.com/repos/853574130/gitblog/issues';
         let per_page = 4;//每页4条数据
         let filter = 'created';
         let sort = 'updated';
         this.$axios.get(`${url}?access_token=${this.$store.state.githubToken[0]}${this.$store.state.githubToken[1]}&&labels=已审核&&filter=${filter}&&sort=${sort}`).then((res) => {
+          console.log(res);
           if (res.status === 200) {
             this.pageNo = Math.ceil(res.data.length / 4);
           }
