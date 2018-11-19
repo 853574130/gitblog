@@ -26,6 +26,7 @@
                 </div>
               </div>
             </router-link>
+            <!-- 跳转到详情页 -->
           </li>
         </ul>
         <pagination :page-no="pageNo" :current.sync="currentPage"></pagination>
@@ -87,7 +88,7 @@
         let per_page = 4;//每页4条数据
         let filter = 'created';
         let sort = 'updated';
-        this.$axios.get(`${url}?access_token=${this.$store.state.githubToken[0]}${this.$store.state.githubToken[1]}&&labels=已审核&&filter=${filter}&&sort=${sort}`).then((res) => {
+        this.$axios.get(`${url}`).then((res) => {
           console.log(res);
           if (res.status === 200) {
             this.pageNo = Math.ceil(res.data.length / 4);
@@ -95,7 +96,8 @@
         }).catch((err) => {
           console.log(err);
         });
-        this.$axios.get(`${url}?access_token=${this.$store.state.githubToken[0]}${this.$store.state.githubToken[1]}&&labels=已审核&&page=${currentPage}&&per_page=${per_page}&&filter=${filter}&&sort=${sort}`).then((res) => {
+
+         this.$axios.get(`${url}`).then((res) => {
           if (res.status === 200) {
             this.list = res.data;
             this.loading = false;
@@ -104,6 +106,28 @@
           console.log(err);
           this.loading = false;
         });
+
+        // this.$axios.get(`${url}?access_token=${this.$store.state.githubToken[0]}${this.$store.state.githubToken[1]}&&labels=已审核&&filter=${filter}&&sort=${sort}`).then((res) => {
+        //   console.log(res);
+        //   if (res.status === 200) {
+        //     this.pageNo = Math.ceil(res.data.length / 4);
+        //   }
+        // }).catch((err) => {
+        //   console.log(err);
+        // });
+
+        // this.$axios.get(`${url}?access_token=${this.$store.state.githubToken[0]}${this.$store.state.githubToken[1]}&&labels=已审核&&page=${currentPage}&&per_page=${per_page}&&filter=${filter}&&sort=${sort}`).then((res) => {
+        //   if (res.status === 200) {
+        //     this.list = res.data;
+        //     this.loading = false;
+        //   }
+        // }).catch((err) => {
+        //   console.log(err);
+        //   this.loading = false;
+        // });
+
+
+
       }
     },
     computed: {

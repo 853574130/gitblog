@@ -73,7 +73,7 @@
       }
     },
     created() {
-      let url = `https://api.github.com/repos/LeachZhou/blog/issues/${this.id}`;
+      let url = `https://api.github.com/repos/853574130/gitblog/issues/${this.id}`;
       this.$axios.get(`${url}?access_token=${this.$store.state.githubToken[0]}${this.$store.state.githubToken[1]}`).then((res) => {
         if (res.status == 200) {
           this.content = res.data;
@@ -95,6 +95,9 @@
         }
       },
       getTime() {
+                  console.log('this.content',this.content);
+
+        console.log('this.content.updated_at',this.content.updated_at);
         return friendlytimejs.FriendlyTime(dayjs(this.content.updated_at).add(8, "hour").format('YYYY-MM-DD HH:mm:ss'), dayjs());
       }
     },
@@ -107,8 +110,8 @@
         new Valine({
           av: AV,
           el: '#comments',
-          appId: 'NWmkgn7YgE53xSj6963D2hE5-gzGzoHsz',
-          appKey: 'UbveIK6lxebyHblry0eSJsWP',
+          appId: 'MN4okDJnNhNN8lyhTSMFCYa1-gzGzoHsz',
+          appKey: 'ecww3i5kpvK8hMMNXhvyYtPu',
           path: window.location.href,
           notify: false,
           verify: false,
@@ -119,6 +122,8 @@
         })
       })
     }
+
+
   }
 </script>
 
